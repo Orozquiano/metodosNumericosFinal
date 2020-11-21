@@ -1,0 +1,223 @@
+{%extends "layout.html"%}
+{%block content%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/styleGrafica.css')}}">
+<div id="pagina">
+  <div class="loguito">
+    <div class="container">
+      <img src="{{url_for('static', filename='Images/LogoPagina.png')}}" class="logo">
+      <h1 style="font-family: fantasy; color: #A8DADC;">PYMATH</h1>
+    </div>
+    <div class="container2 ml-auto">
+      <svg onclick="mostrar()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="255.5" x2="255.5" y1="12" y2="490.602"><stop offset="0" stop-color="#00efd1"/><stop offset="1" stop-color="#00acea"/></linearGradient><linearGradient id="b" x1="302.5" x2="302.5" xlink:href="#a" y1="12" y2="490.602"/><linearGradient id="c" x1="341.5" x2="341.5" xlink:href="#a" y1="12" y2="490.602"/><path d="m412 121h-313a10 10 0 0 0 0 20h313a10 10 0 0 0 0-20z" fill="url(#a)"/><path d="m412 204h-219a10 10 0 0 0 0 20h219a10 10 0 0 0 0-20z" fill="url(#b)"/><path d="m412 288h-313a10 10 0 0 0 0 20h313a10 10 0 0 0 0-20z" fill="url(#a)"/><title id="svgMenu">Open menu</title></svg>
+      
+    </div>
+  </div>
+  <img src="{{url_for('static', filename='Images/matematicas.jpg')}}" class="matematicas">
+  <div id="menu">
+    <div class="caja">
+      <div class="contenedorLaX">
+        <p onclick="ocultar()" style = "font-family: fantasy;">X</p>
+      </div>
+    </div>
+    <div class="contenido">
+      <svg onclick="window.location.assign('http://127.0.0.1:5000/')" href="/" viewBox="0 0 512 512">
+        <polygon points="256,152.96 79.894,288.469 79.894,470.018 221.401,470.018 221.401,336.973 296.576,336.973 296.576,470.018     432.107,470.018 432.107,288.469   "/>
+
+        <polygon points="439.482,183.132 439.482,90.307 365.316,90.307 365.316,126.077 256,41.982 0,238.919 35.339,284.855     256,115.062 476.662,284.856 512,238.92   "/>
+      </svg>
+      <a href="/"style="font-family: fantasy; text-decoration: none;">HOME</a>
+      <ul>
+        <li>
+          <p style="font-family: fantasy;">GRAFICA</p>
+          <ul>
+            <li>
+              <a href="{{url_for('Grafica')}}" >Graficador</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p style="font-family: fantasy;">RAICES DE LA ECUACIÓN</p>  
+          <ul>
+            <li>
+              <a href="{{url_for('Biseccion')}}" >Biseccion</a>
+            </li>
+            <li>
+              <a href="{{url_for('RPolinomio')}}" >Raiz de polinomios</a>
+            </li>
+            <li>
+              <a href="{{url_for('Raphson')}}">Newton Raphson</a>
+            </li>
+            <li>
+              <a href="{{url_for('ReglaFalsa')}}">Regla falsa</a>
+            </li>
+            <li>
+              <a href="{{url_for('Secante')}}">Secante</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p style="font-family: fantasy;">INTEGRACIÓN</p>
+          <ul>
+            <li>
+              <a href="{{url_for('IntegracionRectangulos')}}" >Rectangulos</a>
+            </li>
+            <li>
+              <a href="{{url_for('IntegracionTrapecio')}}" >Trapecio</a>
+            </li>
+            <li>
+              <a href="{{url_for('IntegracionSimpson1_3')}}">Rectangulos 1/3</a>
+            </li>
+            <li>
+              <a href="{{url_for('IntegracionSimpson3_8')}}">Rectangulos 3/8</a>
+            </li>
+            <li>
+              <a href="{{url_for('MonteCarlo')}}">MonteCarlo</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p style="font-family: fantasy;">DERIVADA</p>
+          <ul>
+            <li>
+              <a href="{{url_for('Derivada')}}" >Calculadora</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p style="font-family: fantasy;">CONVERSOR DE BASES</p>
+          <ul>
+            <li>
+              <a href="{{url_for('Calculadora')}}" >Calculadora</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p style="font-family: fantasy;">MATRIZ</p>
+          <ul>
+            <li>
+              <a href="{{url_for('Matriz')}}" >Calculadora</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p style="font-family: fantasy;">AJUSTE DE CURVAS</p>
+          <ul>
+            <li>
+              <a href="{{url_for('AjusteCurvas')}}" >Calculadora</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="Grafica">
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/mathjs@7.5.1/dist/math.min.js"></script>
+  
+    <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+  
+    <style>
+      :root{
+        --color-M1:#E63946;
+        --color-M2:#F1FAEE;
+        --color-M3:#A8DADC;
+        --color-M4:#457B9D;
+        --color-M5:#1D3557;
+        --color-Oscuro1: #000;
+        --color-claro0: #FFF;
+      }
+      form{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 40px;
+        
+      }
+      #draw{
+        margin-top: 5px;
+        padding: 10px;
+        /* border: 1px solid black; */
+        border-radius: 15px;
+        background-color: var(--color-M4);
+        color: var(--color-M2);
+        margin-bottom: 10px;
+        box-shadow: 2px 2px 8px #000 ; 
+        transition: 0.3s;
+        
+      }
+      #draw:hover{
+        /* background-color: var(--color-M1); */
+
+        box-shadow: none;
+        /* color: var(--color-M3); */
+      }
+    </style>
+  
+    <form id="form">
+      <label for="eq" style="color: #F1FAEE; font-family: fantasy; font-size: 25px;">Digite la ecuacion:</label>
+      <input style="z-index: 1000; text-align: center; font-size: 25px; margin-bottom: 50px; background-color: #F1FAEE; box-shadow: 2px 2px 8px #000 ; " type="text" id="eq"/>
+      <input style="z-index: 1000; width: 30%; font-family: fantasy; font-size: 20px;" id="draw" type="submit" value="Graficar" />
+    </form>
+  
+    <div id="plot" style="width: 80vw; height: 700px;">
+    </div>
+  </div>
+  <!-- Grafica -->
+  <script>
+    function mostrar(){
+      var menusito = document.getElementById("menu");
+      // menusito.style.display = "block";
+      // menusito.style.maxWidth = "500px";
+      menusito.style.padding = "30px";
+      menusito.style.right = "0";
+      // menusito.style.overflow = "none";
+
+      // console.log("Hola perez");
+    }
+    function ocultar(){
+      var menusito = document.getElementById("menu");
+      // menusito.style.display = "none";
+      menusito.style.right = "-100%";
+      menusito.style.padding = "0px";
+      // menusito.style.maxWidth = "0px";
+      // menusito.style.overflow = "hidden";
+      // console.log("Hola perez");
+    }
+
+    function draw() {
+
+    try {
+      // compile the expression once
+      const expression = document.getElementById('eq').value.replaceAll("**","^").replaceAll("ln", "log")
+      const expr = math.compile(expression)
+  
+      // evaluate the expression repeatedly for different values of x
+      const xValues = math.range(-10, 10, 0.5).toArray()
+      const yValues = xValues.map(function (x) {
+        return expr.evaluate({ x: x })
+      })
+  
+      // render the plot using plotly
+      const trace1 = {
+        x: xValues,
+        y: yValues,
+        type: 'scatter'
+      }
+      const data = [trace1]
+      Plotly.newPlot('plot', data)
+    }
+    catch (err) {
+      console.error(err)
+      alert(err)
+    }
+  }
+  
+  document.getElementById('form').onsubmit = function (event) {
+    event.preventDefault()
+    draw()
+  }
+  
+  draw()
+  </script>
+  {%endblock%}
+</div>

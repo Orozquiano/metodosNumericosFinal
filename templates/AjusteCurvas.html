@@ -1,0 +1,535 @@
+{%extends "layout.html"%}
+{%block content%}
+<style>
+    :root{
+    --color-M1:#E63946;
+    --color-M2:#F1FAEE;
+    --color-M3:#A8DADC;
+    --color-M4:#457B9D;
+    --color-M5:#1D3557;
+    --color-Oscuro1: #000;
+    --color-claro0: #FFF;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#pagina{
+    width: 100vw;
+    height: 1080px;
+    display: flex;
+    background: linear-gradient(to bottom, var(--color-M5),var(--color-M4),var(--color-M3),var(--color-M2));
+    background-color: var(--color-M3);
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.loguito{
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+    position: relative;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: var(--color-M4) solid 2px;
+    border-radius: 150px;
+    z-index: 3;
+
+
+}
+
+.loguito .container{
+    position: relative;
+    width: auto;
+    height: 90px;
+    overflow: hidden;
+    display: flex;
+    margin:0;
+    margin-left: 50px;
+    align-items: center;
+    
+}
+.loguito .container2{
+    position: relative;
+    width: auto;
+    height: 90px;
+    overflow: hidden;
+    display: flex;
+    margin:0;
+    margin-right: 50px;
+}
+
+.loguito .container2 > svg{
+    height: 100%;
+    width: 100px;
+    display: flex;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.loguito .container2 >svg:hover{
+    
+    transform: scale(1.2);
+}
+#menu{
+    position: fixed;
+    /* display: none; */
+    /* max-width: 0;   */
+    padding: 0 ;
+    height: 100vh;
+    background-color: var(--color-M4);
+    opacity: 0.9;
+    z-index: 1002;
+    right: -100%;
+    transition: 0.3s;
+    /* overflow: hidden; */
+}
+#menu .caja{
+    display: flex;
+    width: 100%;
+    height: 20%;
+    justify-content: flex-end;
+}
+#menu .caja .contenedorLaX{
+    display: flex;
+    width: 70px;
+    height: 70px;
+    right: 0;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+}
+#menu .caja .contenedorLaX p {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    right: 0;
+    font-size: 50px;
+}
+
+.loguito .container .logo{
+    height: 100%;
+    display: flex;
+    z-index: 1;
+}
+.matematicas{
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    position: fixed;
+    z-index: 0;
+    top:0;
+}
+
+#menu .contenido{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    
+}
+#menu .contenido>svg{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    fill: var(--color-M5);
+    transition: 0.3s;
+}
+
+#menu .contenido>svg:hover{
+    width: 110px;
+    height: 110px;
+    fill: var(--color-M3);
+    transition: 0.3s;
+}
+#menu .contenido a{
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 30px;
+    color: var(--color-M5);
+    
+    overflow-y: hidden;
+}
+
+#menu .contenido p{
+    cursor: pointer;
+    font-size: 30px;
+    color: var(--color-M5);
+    margin-bottom: 30px;
+    overflow-y: hidden;
+}
+
+#menu .contenido ul li{
+    list-style: none;
+    position: relative;
+    padding: 5px;
+}
+#menu .contenido ul li ul {
+    position: absolute;
+    background-color: var(--color-M4);
+    right: 0;
+    top: 0;
+    list-style: none;
+    max-width: 0;
+    transition: 0.3s;
+    /* overflow: hidden; */
+    /* display: none; */
+    opacity: 0;
+    width: 500px;
+}
+#menu .contenido ul li ul li{
+    /* height: 50px; */
+    padding: 10px;
+    margin-bottom: 2px;
+    font-family: fantasy;
+    transition: 0.2s;
+}
+#menu .contenido ul li ul li:hover a{
+    color: var(--color-M3);
+    margin-left:10px;
+    transition: 0.2s;
+}
+#menu .contenido ul li:hover ul{
+    max-width: 100%;
+    /* display: block; */
+    right: 100%;
+    opacity: 1;
+}
+
+
+    :root {
+        --color-Blue1: #153240;
+        --color-Blue2: #2E6E8D;
+        --color-Blue3: #47AAD9;
+        --color-claro1: #FFE6B3;
+        --color-claro2: #FFF3D9;
+        --color-Oscuro1: #000;
+        --color-claro0: #FFF;
+    }
+
+    .contenido {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 5;
+    }
+
+    .contenido form {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenido form label {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .contenido>h3 {
+        margin-top: 10px;
+    }
+
+    .contenido>textarea {
+        width: 50%;
+        font-size: 20px;
+    }
+
+    .contenido form .botones {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .contenido form button {
+        margin-top: 5px;
+        padding: 10px;
+        /* border: 1px solid black; */
+        border-radius: 15px;
+        background-color: var(--color-M4);
+        color: var(--color-M2);
+        margin-bottom: 10px;
+        box-shadow: 2px 2px 8px #000 ; 
+        transition: 0.3s;
+    }
+
+    .contenido form button:hover {
+        box-shadow: none;
+    }
+
+    .contenido form #matrices {
+        width: 100vw;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .contenido form #matrices>div {
+        /* border: 1px solid green; */
+        padding: 5px;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contenido form #matrices>div .col {
+        /* margin-left: 3px; */
+        width: 50px;
+    }
+    .contenido form .rcinputs{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .contenido form #matrices input{
+      font-family: fantasy;
+        background-color: var(--color-M2);
+    }
+
+    .contenido form #matrices>div{
+      font-family: fantasy;
+        /* background-color: var(--color-M2); */
+    }
+   
+</style>
+<div id="pagina">
+  
+    <div class="loguito">
+        <div class="container">
+          <img src="{{url_for('static', filename='Images/LogoPagina.png')}}" class="logo">
+          <h1 style="font-family: fantasy; color: #A8DADC;">PYMATH</h1>
+        </div>
+        <div class="container2 ml-auto">
+          <svg onclick="mostrar()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="255.5" x2="255.5" y1="12" y2="490.602"><stop offset="0" stop-color="#00efd1"/><stop offset="1" stop-color="#00acea"/></linearGradient><linearGradient id="b" x1="302.5" x2="302.5" xlink:href="#a" y1="12" y2="490.602"/><linearGradient id="c" x1="341.5" x2="341.5" xlink:href="#a" y1="12" y2="490.602"/><path d="m412 121h-313a10 10 0 0 0 0 20h313a10 10 0 0 0 0-20z" fill="url(#a)"/><path d="m412 204h-219a10 10 0 0 0 0 20h219a10 10 0 0 0 0-20z" fill="url(#b)"/><path d="m412 288h-313a10 10 0 0 0 0 20h313a10 10 0 0 0 0-20z" fill="url(#a)"/><title id="svgMenu">Open menu</title></svg>
+          
+        </div>
+      </div>
+      <img src="{{url_for('static', filename='Images/matematicas.jpg')}}" class="matematicas">
+      <div id="menu">
+        <div class="caja">
+          <div class="contenedorLaX">
+            <p onclick="ocultar()" style = "font-family: fantasy;">X</p>
+          </div>
+        </div>
+        <div class="contenido">
+          <svg onclick="window.location.assign('http://127.0.0.1:5000/')" href="/" viewBox="0 0 512 512">
+            <polygon points="256,152.96 79.894,288.469 79.894,470.018 221.401,470.018 221.401,336.973 296.576,336.973 296.576,470.018     432.107,470.018 432.107,288.469   "/>
+    
+            <polygon points="439.482,183.132 439.482,90.307 365.316,90.307 365.316,126.077 256,41.982 0,238.919 35.339,284.855     256,115.062 476.662,284.856 512,238.92   "/>
+          </svg>
+          <a href="/"style="font-family: fantasy; text-decoration: none; ">HOME</a>
+          <ul>
+            <li>
+                <p style="font-family: fantasy;">GRAFICA</p>
+                <ul>
+                  <li>
+                    <a href="{{url_for('Grafica')}}" >Graficador</a>
+                  </li>
+                </ul>
+              </li>
+            <li>
+              <p style="font-family: fantasy;">RAICES DE LA ECUACIÓN</p>  
+              <ul>
+                <li>
+                  <a href="{{url_for('Biseccion')}}" >Biseccion</a>
+                </li>
+                <li>
+                  <a href="{{url_for('RPolinomio')}}" >Raiz de polinomios</a>
+                </li>
+                <li>
+                  <a href="{{url_for('Raphson')}}">Newton Raphson</a>
+                </li>
+                <li>
+                  <a href="{{url_for('ReglaFalsa')}}">Regla falsa</a>
+                </li>
+                <li>
+                  <a href="{{url_for('Secante')}}">Secante</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p style="font-family: fantasy;">INTEGRACIÓN</p>
+              <ul>
+                <li>
+                  <a href="{{url_for('IntegracionRectangulos')}}" >Rectangulos</a>
+                </li>
+                <li>
+                  <a href="{{url_for('IntegracionTrapecio')}}" >Trapecio</a>
+                </li>
+                <li>
+                  <a href="{{url_for('IntegracionSimpson1_3')}}">Rectangulos 1/3</a>
+                </li>
+                <li>
+                  <a href="{{url_for('IntegracionSimpson3_8')}}">Rectangulos 3/8</a>
+                </li>
+                <li>
+                  <a href="{{url_for('MonteCarlo')}}">MonteCarlo</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p style="font-family: fantasy;">DERIVADA</p>
+              <ul>
+                <li>
+                  <a href="{{url_for('Derivada')}}" >Calculadora</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p style="font-family: fantasy;">CONVERSOR DE BASES</p>
+              <ul>
+                <li>
+                  <a href="{{url_for('Calculadora')}}" >Calculadora</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p style="font-family: fantasy;">MATRIZ</p>
+              <ul>
+                <li>
+                  <a href="{{url_for('Matriz')}}" >Calculadora</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+                <p style="font-family: fantasy;">AJUSTE DE CURVAS</p>
+                <ul>
+                  <li>
+                    <a href="{{url_for('AjusteCurvas')}}" >Calculadora</a>
+                  </li>
+                </ul>
+              </li>
+          </ul>
+        </div>
+      </div>
+<div class="contenido">
+    <h1 style="color: #F1FAEE; font-family: fantasy; margin-bottom: 30px;">Ajuste de curvas</h1>
+    <form action="/CAjusteCurvas" method="POST">
+        <div class="rcinputs">
+            <div>
+                <label style="font-family: fantasy; color: #000; margin-left: 50px;" >
+                    Número de datos
+                    <input style="z-index: 1000; text-align: center; font-size: 15px; margin-bottom: 50px; background-color: #F1FAEE; box-shadow: 2px 2px 8px #000 ;width: 100%; " type="number" value="3" id="N">
+                </label>
+            </div>
+            <div>
+                <label style="font-family: fantasy; color: #000; margin-left: 50px;">
+                    Grado de la curva
+                    <input style="z-index: 1000; text-align: center; font-size: 15px; margin-bottom: 50px; background-color: #F1FAEE; box-shadow: 2px 2px 8px #000 ;width: 100%; "type="number" value="1" id="grado" name="grado">
+                </label>
+            </div>
+        </div>
+        <div id="matrices">
+            <div id="X">
+                <h3>X</h3>
+                <input type="text" name="datosX" id="datosY">
+            </div>
+            <div id="Y">
+                <h3>Y</h3>
+                <input type="text" name="datosY" id="datosY">
+            </div>
+        </div>
+        <div class="botones">
+            <button style="z-index: 1000; width: 40%; font-family: fantasy; font-size: 20px; color:#F1FAEE; margin-top: 30px;" type="submit" type="submit">Calcular</button>
+            <button style="margin-top: 30px;" type="reset">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd"
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg>
+            </button>
+        </div>
+    </form>
+    <h3 style="font-family: fantasy; font-size: 30px;">Resultado</h3>
+    <p style="font-family: fantasy; font-size: 20px;">Coeficientes de la funcion f(x) [a0x^0, a1x^1, a2x^2, ... , anx^n]</p>
+    <textarea style="width: 40%; height: 20%; z-index: 1000; text-align: center; font-size: 15px; margin-bottom: 50px; background-color: #F1FAEE; box-shadow: 2px 2px 8px #000 ;">{{Result}}</textarea>
+</div>
+</div>
+<script>
+       function mostrar(){
+      var menusito = document.getElementById("menu");
+      // menusito.style.display = "block";
+      // menusito.style.maxWidth = "500px";
+      menusito.style.padding = "30px";
+      menusito.style.right = "0";
+      // menusito.style.overflow = "none";
+
+      // console.log("Hola perez");
+    }
+    function ocultar(){
+      var menusito = document.getElementById("menu");
+      // menusito.style.display = "none";
+      menusito.style.right = "-100%";
+      menusito.style.padding = "0px";
+      // menusito.style.maxWidth = "0px";
+      // menusito.style.overflow = "hidden";
+      // console.log("Hola perez");
+    }
+    const N = document.getElementById("N");
+    let Ndatos=N.value;
+    actualizarhtml();
+    N.addEventListener('change',()=>{
+        Ndatos=N.value;
+        actualizarhtml();
+    });
+    
+    function actualizarhtml() {
+        X=document.getElementById("X");
+        Y=document.getElementById("Y");
+        X.innerHTML='<h3>X</h3><input type="text" name="datosX" id="datosX">';
+        Y.innerHTML='<h3>Y</h3><input type="text" name="datosY" id="datosY">';
+        ingresarX="";
+        ingresarY="";
+        for(let i=0;i<Ndatos;i++){
+            ingresarX+=`<input id="X${i}" value="0">`;
+            ingresarY+=`<input id="Y${i}" value="0">`;
+        }
+        X.innerHTML+=ingresarX;
+        Y.innerHTML+=ingresarY;
+        updateinputstate();
+    }
+
+    function updateinputstate() {
+        for (let i = 0; i < Ndatos; i++) {
+            document.getElementById(`X${i}`).addEventListener("change", () => {
+                obtenervectores();
+            });
+            document.getElementById(`Y${i}`).addEventListener("change", () => {
+                obtenervectores();
+            });
+        }
+        obtenervectores();
+    }
+
+    function obtenervectores() {
+        let datosX = "[";
+        let datosY="[";
+        for (let i = 0; i <Ndatos; i++) {
+                datosX+=document.getElementById(`X${i}`).value;
+                datosY+=document.getElementById(`Y${i}`).value;
+            if(i<Ndatos-1){
+                datosX+=',';
+                datosY+=',';
+            }else{
+                datosX+=']';
+                datosY+=']';
+            }
+        }
+        document.getElementById("datosX").value=datosX;
+        document.getElementById("datosY").value=datosY;
+    }
+</script>
+{%endblock%}

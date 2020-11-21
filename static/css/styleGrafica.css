@@ -1,0 +1,204 @@
+:root{
+    --color-M1:#E63946;
+    --color-M2:#F1FAEE;
+    --color-M3:#A8DADC;
+    --color-M4:#457B9D;
+    --color-M5:#1D3557;
+    --color-Oscuro1: #000;
+    --color-claro0: #FFF;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#pagina{
+    width: 100vw;
+    height: 1080px;
+    display: flex;
+    background: linear-gradient(to bottom, var(--color-M5),var(--color-M4),var(--color-M3),var(--color-M2));
+    background-color: var(--color-M3);
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.loguito{
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+    position: relative;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: var(--color-M4) solid 2px;
+    border-radius: 150px;
+    z-index: 3;
+
+
+}
+
+.loguito .container{
+    position: relative;
+    width: auto;
+    height: 90px;
+    overflow: hidden;
+    display: flex;
+    margin:0;
+    margin-left: 50px;
+    align-items: center;
+    
+}
+.loguito .container2{
+    position: relative;
+    width: auto;
+    height: 90px;
+    overflow: hidden;
+    display: flex;
+    margin:0;
+    margin-right: 50px;
+}
+
+.loguito .container2 > svg{
+    height: 100%;
+    width: 100px;
+    display: flex;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.loguito .container2 >svg:hover{
+    
+    transform: scale(1.2);
+}
+#menu{
+    position: fixed;
+    /* display: none; */
+    /* max-width: 0;   */
+    padding: 0 ;
+    height: 100vh;
+    background-color: var(--color-M4);
+    opacity: 0.9;
+    z-index: 1002;
+    right: -100%;
+    transition: 0.3s;
+    /* overflow: hidden; */
+}
+#menu .caja{
+    display: flex;
+    width: 100%;
+    height: 20%;
+    justify-content: flex-end;
+}
+#menu .caja .contenedorLaX{
+    display: flex;
+    width: 70px;
+    height: 70px;
+    right: 0;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+}
+#menu .caja .contenedorLaX p {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    right: 0;
+    font-size: 50px;
+}
+
+.loguito .container .logo{
+    height: 100%;
+    display: flex;
+    z-index: 1;
+}
+.matematicas{
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    position: fixed;
+    z-index: 0;
+    top:0;
+}
+
+#menu .contenido{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    
+}
+#menu .contenido>svg{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    fill: var(--color-M5);
+    transition: 0.3s;
+}
+
+#menu .contenido>svg:hover{
+    width: 110px;
+    height: 110px;
+    fill: var(--color-M3);
+    transition: 0.3s;
+}
+#menu .contenido a{
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 30px;
+    color: var(--color-M5);
+    margin-bottom: 30px;
+    overflow-y: hidden;
+}
+
+#menu .contenido p{
+    cursor: pointer;
+    font-size: 30px;
+    color: var(--color-M5);
+    margin-bottom: 30px;
+    overflow-y: hidden;
+}
+
+#menu .contenido ul li{
+    list-style: none;
+    position: relative;
+    padding: 5px;
+}
+#menu .contenido ul li ul {
+    position: absolute;
+    background-color: var(--color-M4);
+    right: 0;
+    top: 0;
+    list-style: none;
+    max-width: 0;
+    transition: 0.3s;
+    /* overflow: hidden; */
+    /* display: none; */
+    opacity: 0;
+    width: 500px;
+}
+#menu .contenido ul li ul li{
+    /* height: 50px; */
+    padding: 10px;
+    margin-bottom: 2px;
+    font-family: fantasy;
+    transition: 0.2s;
+}
+#menu .contenido ul li ul li:hover a{
+    color: var(--color-M3);
+    margin-left:10px;
+    transition: 0.2s;
+}
+#menu .contenido ul li:hover ul{
+    max-width: 100%;
+    /* display: block; */
+    right: 100%;
+    opacity: 1;
+}

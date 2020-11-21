@@ -1,0 +1,22 @@
+:root{
+    --color-M1:#66097D;
+    --color-M2:#32043D;
+    --color-M3:#9A0DBD;
+    --color-M4:#A40EC9;
+    --color-M5:#860CA3;
+    --color-Oscuro1: #000;
+    --color-claro0: #FFF;
+}
+
+*{
+    background-color: var(--color-M2);
+    color:white;
+    /* display: flex; */
+}
+.contenido{
+    display:flex;
+    /* flex-direction: column; */
+}
+
+
+
