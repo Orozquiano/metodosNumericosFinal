@@ -304,7 +304,6 @@
    
 </style>
 <div id="pagina">
-  
     <div class="loguito">
         <div class="container">
           <img src="{{url_for('static', filename='Images/LogoPagina.png')}}" class="logo">
@@ -429,15 +428,15 @@
                     <input style="z-index: 1000; text-align: center; font-size: 15px; margin-bottom: 50px; background-color: #F1FAEE; box-shadow: 2px 2px 8px #000 ;width: 100%; "type="number" value="1" id="grado" name="grado">
                 </label>
             </div>
+            <textarea style="display: none;" name="prevaleceX" id="prevaleceX" cols="30" rows="10">{{PX}}</textarea>
+            <textarea style="display: none;" name="prevaleceY" id="prevaleceY" cols="30" rows="10">{{PY}}</textarea>
         </div>
         <div id="matrices">
             <div id="X">
-                <h3>X</h3>
-                <input type="text" name="datosX" id="datosY">
+                <h3>X</h3><p>Ingrese su vector prediseñado aquí:</p><input type="text" name="datosX" id="datosX">
             </div>
             <div id="Y">
-                <h3>Y</h3>
-                <input type="text" name="datosY" id="datosY">
+                <h3>Y</h3><p>Ingrese su vector prediseñado aquí:</p><input type="text" name="datosY" id="datosY">
             </div>
         </div>
         <div class="botones">
@@ -459,28 +458,19 @@
 </div>
 </div>
 <script>
-       function mostrar(){
+    function mostrar(){
       var menusito = document.getElementById("menu");
-      // menusito.style.display = "block";
-      // menusito.style.maxWidth = "500px";
       menusito.style.padding = "30px";
       menusito.style.right = "0";
-      // menusito.style.overflow = "none";
-
-      // console.log("Hola perez");
     }
     function ocultar(){
       var menusito = document.getElementById("menu");
-      // menusito.style.display = "none";
       menusito.style.right = "-100%";
       menusito.style.padding = "0px";
-      // menusito.style.maxWidth = "0px";
-      // menusito.style.overflow = "hidden";
-      // console.log("Hola perez");
     }
     const N = document.getElementById("N");
     let Ndatos=N.value;
-    actualizarhtml();
+    prevalece(document.getElementById("prevaleceX").value,document.getElementById("prevaleceY").value);
     N.addEventListener('change',()=>{
         Ndatos=N.value;
         actualizarhtml();
@@ -489,8 +479,8 @@
     function actualizarhtml() {
         X=document.getElementById("X");
         Y=document.getElementById("Y");
-        X.innerHTML='<h3>X</h3><input type="text" name="datosX" id="datosX">';
-        Y.innerHTML='<h3>Y</h3><input type="text" name="datosY" id="datosY">';
+        X.innerHTML='<p>Ingrese su vector prediseñado aquí:</p><input type="text" name="datosX" id="datosX"><h3>X</h3><p>Ingrese cada punto(X) a continuación:</p>';
+        Y.innerHTML='<p>Ingrese su vector prediseñado aquí:</p><input type="text" name="datosY" id="datosY"><h3>Y</h3><p>Ingrese cada punto(Y) a continuación:</p>';
         ingresarX="";
         ingresarY="";
         for(let i=0;i<Ndatos;i++){
@@ -530,6 +520,28 @@
         }
         document.getElementById("datosX").value=datosX;
         document.getElementById("datosY").value=datosY;
+    }
+    function prevalece(A,B){
+      if(A!="" && B!= ""){
+        console.log("prevalece");
+        A=A.replace("[","");
+        A=A.replace("]","");
+        A=A.split(",");
+        B=B.replace("[","");
+        B=B.replace("]","");
+        B=B.split(",");
+        document.getElementById("N").value=A.length;
+        Ndatos=A.length;
+        actualizarhtml();
+        for(let d=0;d<Ndatos;d++){
+          document.getElementById(`X${d}`).value=A[d];
+          document.getElementById(`Y${d}`).value=B[d];
+        }
+        obtenervectores();
+      }else{
+        console.log("actualiza");
+        actualizarhtml();
+      }
     }
 </script>
 {%endblock%}

@@ -309,7 +309,7 @@ def CAjusteCurvas():
         Y=Y.replace("]","")
         Y=Y.split(",")
         resultado=Ajuste(X,Y,G)
-        return render_template('AjusteCurvas.html', Result=resultado)
+        return render_template('AjusteCurvas.html', Result=resultado, PX = request.form['datosX'], PY= request.form['datosY'])
 
 if __name__ == '__main__':
     app.run(debug=True)
