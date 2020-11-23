@@ -291,7 +291,7 @@ def CMatriz():
         if(op==8):
             Resultado[0]="valor de las variables a0, a1, a2, ..., an \n"+str(Resultado[0])
 
-        return render_template('Matriz.html',Result=Resultado[0], MA=Resultado[1], MB=Resultado[2])
+        return render_template('Matriz.html',Result=Resultado[0], MA=Resultado[1], MB=Resultado[2], PA=MA, PB=MB, OP=op)
 
 @app.route('/AjusteCurvas')
 def AjusteCurvas():

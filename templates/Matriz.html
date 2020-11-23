@@ -122,6 +122,7 @@
                     <option value="8">Sistema de Ecuaciones</option>
                 </select>
             </div>
+            <textarea style="display:none;" name="ope" id="prevaleceO" cols="30" rows="10">{{OP}}</textarea>
             <div id="matrizB">
                 <h3>Matriz B</h3>
             </div>
@@ -143,14 +144,16 @@
             </button>
         </div>
     </form>
-    <div style="display: flex; width: 100%; justify-content: center;">
+    <div style="display: flex; width: 40%; justify-content: space-between;">
         <div>
             <p>Matriz A</p>
             <textarea type="text" id="matrizsa">{{MA}}</textarea>
+            <textarea style="display: none;" type="text" id="prevaleceA">{{PA}}</textarea>
         </div>
         <div>
             <p>Matriz B</p>
             <textarea type="text" id="matrizsb">{{MB}}</textarea>
+            <textarea style="display: none;" type="text" id="prevaleceB">{{PB}}</textarea>
         </div>
     </div>
     <h3>Resultado</h3>
@@ -166,14 +169,22 @@
     let filasB = filaB.value;
     let columnasB = columnaB.value;
     ecuaciones = false;
-    actualizarhtml();
+    prevalecer(document.getElementById("prevaleceA").value,document.getElementById("prevaleceB").value,document.getElementById("prevaleceO").value);
+    // actualizarhtml();
     document.getElementById("operacion").addEventListener("change", () => {
-        if (document.getElementById("operacion").value == 8) {
+        o=document.getElementById("operacion").value;
+        if (o == 8) {
             this.ecuaciones = true;
-            actualizarhtml();
+            actualizarhtml(1);
+            actualizarhtml(2);
+            updateinputstate();
         } else {
-            this.ecuaciones = false;
-            actualizarhtml();
+            if(document.getElementById("matrizB").style.display=="none"){
+                this.ecuaciones = false;
+                actualizarhtml(1);
+                actualizarhtml(2);
+                updateinputstate();
+            }
         }
     });
     filaA.addEventListener("change", () => {
@@ -187,7 +198,8 @@
                 alert("el mínimo de filas es 1");
                 filaA.value = 1;
             } else {
-                actualizarhtml();
+                actualizarhtml(1);
+                updateinputstate();
             }
         }
     });
@@ -199,10 +211,11 @@
             columnaA.value = 7;
         } else {
             if (columnasA < 1) {
-                alert("el mínimo de columnas es 2");
+                alert("el mínimo de columnas es 1");
                 columnaA.value = 1;
             } else {
-                actualizarhtml();
+                actualizarhtml(1);
+                updateinputstate();
             }
         }
     });
@@ -217,7 +230,8 @@
                 alert("el mínimo de filas es 1");
                 filaB.value = 1;
             } else {
-                actualizarhtml();
+                actualizarhtml(2);
+                updateinputstate();
             }
         }
     });
@@ -229,10 +243,11 @@
             columnaB.value = 7;
         } else {
             if (columnasB < 1) {
-                alert("el mínimo de columnas es 2");
+                alert("el mínimo de columnas es 1");
                 columnaB.value = 1;
             } else {
-                actualizarhtml();
+                actualizarhtml(2);
+                updateinputstate();
             }
         }
     });
@@ -261,55 +276,61 @@
         obtenervectores();
     }
 
-    function actualizarhtml() {
-        document.getElementById("matrizA").innerHTML = "<h3>Matriz A</h3>";
-        document.getElementById("matrizB").innerHTML = "<h3>Matriz B</h3>";
-        let ingresarA = "<div class='row'>";
-        let ingresarB = "<div class='row'>";
-        ingresarA += `<div class="col"></div>`;
-        ingresarB += `<div class="col"></div>`;
-        for (let i = 1; i <= columnasA; i++) {
-            ingresarA += `<div class="col">C${i}</div>`;
-        }
-        for (let i = 1; i <= columnasB; i++) {
-            ingresarB += `<div class="col">C${i}</div>`;
-        }
-        if (this.ecuaciones == true) {
-            ingresarA += `<div class="col">VectorB</div>`;
-            document.getElementById("matrizB").style.display='none';
-        }else{
-            document.getElementById("matrizB").style.display='block';
-        }
-        ingresarA += "</div>"
-        ingresarB += "</div>"
-        for (let i = 1; i <= filasA; i++) {
-            // ingresa una fila
-            ingresarA += `<div class="row"><p class="col">F${i}</p>`;
-            for (let j = 1; j <= columnasA; j++) {
-                //ingresa cada columna a la fila
-                ingresarA += `<input class="col" id="Af${i}c${j}" value="0">`;
+    function actualizarhtml(vect) {
+        if(vect==1){
+            document.getElementById("matrizA").innerHTML = "<h3>Matriz A</h3>";
+            let ingresarA = "<div class='row'>";
+            ingresarA += `<div class="col"></div>`;
+            for (let i = 1; i <= columnasA; i++) {
+                ingresarA += `<div class="col">C${i}</div>`;
             }
             if (this.ecuaciones == true) {
-                //ingresa cada columna de igualdad a la fila de ecuaciones
-                ingresarA += `<input class="col" id="E${i}" value="0">`;
+                ingresarA += `<div class="col">VectorB</div>`;
+                document.getElementById("matrizB").style.display='none';
+            }else{
+                document.getElementById("matrizB").style.display='block';
             }
             ingresarA += "</div>"
-        }
-        if(this.ecuaciones==false){
-            for (let i = 1; i <= filasB; i++) {
+
+            for (let i = 1; i <= filasA; i++) {
                 // ingresa una fila
-                ingresarB += `<div class="row"><p class="col">F${i}</p>`;
-                for (let j = 1; j <= columnasB; j++) {
+                ingresarA += `<div class="row"><p class="col">F${i}</p>`;
+                for (let j = 1; j <= columnasA; j++) {
                     //ingresa cada columna a la fila
-                    ingresarB += `<input class="col" id="Bf${i}c${j}" value="0">`;
+                    ingresarA += `<input class="col" id="Af${i}c${j}" value="0">`;
                 }
-                ingresarB += "</div>"
+                if (this.ecuaciones == true) {
+                    //ingresa cada columna de igualdad a la fila de ecuaciones
+                    ingresarA += `<input class="col" id="E${i}" value="0">`;
+                }
+                ingresarA += "</div>"
             }
+            document.getElementById("matrizA").innerHTML += ingresarA;
+            document.getElementById("prevaleceA").value="";
+        }else{
+            document.getElementById("matrizB").innerHTML = "<h3>Matriz B</h3>";
+            let ingresarB = "<div class='row'>";
+            ingresarB += `<div class="col"></div>`;
+            for (let i = 1; i <= columnasB; i++) {
+                ingresarB += `<div class="col">C${i}</div>`;
+            }
+            ingresarB += "</div>"
+            if(this.ecuaciones==false){
+                for (let i = 1; i <= filasB; i++) {
+                    // ingresa una fila
+                    ingresarB += `<div class="row"><p class="col">F${i}</p>`;
+                    for (let j = 1; j <= columnasB; j++) {
+                        //ingresa cada columna a la fila
+                        ingresarB += `<input class="col" id="Bf${i}c${j}" value="0">`;
+                    }
+                    ingresarB += "</div>"
+                }
+            }
+            document.getElementById("matrizB").innerHTML += ingresarB;
+            document.getElementById("prevaleceB").value="";
         }
-        document.getElementById("matrizA").innerHTML += ingresarA;
-        document.getElementById("matrizB").innerHTML += ingresarB;
-        updateinputstate();
-        obtenervectores();
+        // updateinputstate();
+        // obtenervectores();
     }
     function obtenervectores() {
         let vectorA = "(";
@@ -362,6 +383,52 @@
         }
         document.getElementById("vectorA").value = vectorA;
         document.getElementById("vectorB").value = vectorB;
+    }
+    function prevalecer(A,B,O){
+        if(A!="" && B!=""){
+            //entra a prevalecer los datos anteriores
+            console.log("prevalecer");
+            document.getElementById("operacion").value=O;
+            A = A.replace("([","");
+            A = A.replace("])","");
+            let RowsPa = A.split("],[");
+            filaA.value=RowsPa.length;
+            columnaA.value= RowsPa[0].split(",").length;
+            filasA= parseInt(filaA.value);
+            columnasA = parseInt(columnaA.value);
+            actualizarhtml(1);
+
+            for(let i=0;i<filasA;i++){
+                let ColsPa=RowsPa[i].split(",");
+                for(let j=0; j<columnasA;j++){
+                    document.getElementById(`Af${i+1}c${j+1}`).value=ColsPa[j];
+                }
+            }
+
+            B = B.replace("([","");
+            B = B.replace("])","");
+            let RowsPb = B.split("],[");
+            filaB.value=RowsPb.length;
+            columnaB.value= RowsPb[0].split(",").length;
+            filasB= parseInt(filaB.value);
+            columnasB = parseInt(columnaB.value);
+            actualizarhtml(2);
+            for(let i=0;i<filasB;i++){
+                let ColsPb=RowsPb[i].split(",");
+                for(let j=0; j<columnasB;j++){
+                    document.getElementById(`Bf${i+1}c${j+1}`).value=ColsPb[j];
+                }
+            }
+            updateinputstate();
+            obtenervectores();
+        }else{
+            //simplemente actualiza los datos para una nueva operacion
+            console.log("actualizar");
+            actualizarhtml(1);
+            actualizarhtml(2);
+            updateinputstate();
+            obtenervectores();
+        }
     }
 </script>
 {%endblock%}
